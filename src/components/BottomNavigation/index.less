@@ -1,0 +1,89 @@
+@import '@/styles/variables.less';
+
+.bottom-navigation {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 24px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: @radius-lg;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  width: 512px;
+  max-width: calc(100vw - 48px);
+
+  @supports not (backdrop-filter: blur(40px)) {
+    background: rgba(255, 255, 255, 0.9);
+  }
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  cursor: pointer;
+  min-width: 60px;
+
+  .icon {
+    width: 18px;
+    height: 18px;
+    filter: brightness(0) opacity(0.5);
+  }
+
+  &.active {
+    .icon {
+      filter: brightness(0) opacity(0.8);
+    }
+
+    .nav-label {
+      color: @color-primary;
+    }
+  }
+}
+
+.nav-label {
+  font-size: 10px;
+  font-weight: 500;
+  color: @color-placeholder;
+  text-transform: uppercase;
+  letter-spacing: 5%;
+  font-family: @font-family;
+}
+
+.add-button {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  background: @color-primary-light;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow:
+    0 4px 6px -4px rgba(0, 122, 255, 0.3),
+    0 10px 15px -3px rgba(0, 122, 255, 0.3);
+  transition: transform @transition-fast, box-shadow @transition-fast;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create:*)",
+      "Bash(echo \"EXIT_CODE:$?\")",
+      "Bash(openspec status:*)",
+      "Bash(openspec instructions:*)",
+      "mcp__Framelink_MCP_for_Figma__get_figma_data",
+      "mcp__Framelink_MCP_for_Figma__download_figma_images",
+      "mcp__figmaDev__get_figma_data",
+      "mcp__filesystem__move_file",
+      "mcp__filesystem__read_multiple_files"
+    ]
+  }
+}

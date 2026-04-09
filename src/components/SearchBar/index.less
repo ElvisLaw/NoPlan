@@ -1,0 +1,37 @@
+@import '@/styles/variables.less';
+
+.search-bar {
+  width: 100%;
+  padding: 0 0 @spacing-xxl;
+}
+
+.search-input-wrapper {
+  display: flex;
+  align-items: center;
+  background: @color-input-bg;
+  border-radius: @radius-md;
+  padding: @spacing-sm 16px 14px 48px;
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  left: 16px;
+  width: 18px;
+  height: 18px;
+  color: @color-placeholder;
+}
+
+.search-input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  font-family: @font-family;
+  color: @color-text;
+  outline: none;
+
+  &::placeholder {
+    color: @color-placeholder;
+  }
+}
