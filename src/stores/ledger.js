@@ -44,11 +44,24 @@ export const useLedgerStore = defineStore('ledger', () => {
     console.log('Selected ledger:', id)
   }
 
+  function addLedger(ledger) {
+    const newId = Math.max(...ledgers.value.map(l => l.id), 0) + 1
+    ledgers.value.push({
+      id: newId,
+      name: ledger.name,
+      balance: 0,
+      icon: ledger.icon,
+      type: ledger.type,
+    })
+    console.log('Added ledger:', ledger)
+  }
+
   return {
     ledgers,
     searchQuery,
     filteredLedgers,
     setSearchQuery,
     selectLedger,
+    addLedger,
   }
 })

@@ -5,13 +5,8 @@
         <circle cx="11" cy="11" r="8" />
         <path d="m21 21-4.35-4.35" />
       </svg>
-      <input
-        type="text"
-        class="search-input"
-        placeholder="搜索账本..."
-        :value="modelValue"
-        @input="$emit('update:modelValue', $event.target.value)"
-      />
+      <input type="text" class="search-input" placeholder="搜索账本..." :value="modelValue"
+        @input="$emit('update:modelValue', $event.target.value)" />
     </div>
   </div>
 </template>

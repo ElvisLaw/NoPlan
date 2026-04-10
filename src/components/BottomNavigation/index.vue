@@ -1,24 +1,14 @@
 <template>
   <nav class="bottom-navigation">
-    <div class="nav-item" :class="{ active: activeItem === 'dashboard' }">
-      <span class="icon icon-dashboard"></span>
-      <span class="nav-label">仪表盘</span>
-    </div>
-    <div class="nav-item" :class="{ active: activeItem === 'history' }">
-      <span class="icon icon-history"></span>
-      <span class="nav-label">历史</span>
-    </div>
-    <button class="add-button" @click="$emit('add')">
-      <span class="icon icon-nav-add"></span>
-    </button>
-    <div class="nav-item" :class="{ active: activeItem === 'statistics' }">
-      <span class="icon icon-statistics"></span>
-      <span class="nav-label">统计</span>
-    </div>
-    <div class="nav-item" :class="{ active: activeItem === 'settings' }">
-      <span class="icon icon-settings"></span>
-      <span class="nav-label">设置</span>
-    </div>
+    <template v-for="item in menuItems" :key="item.key">
+      <button v-if="item.isAdd" class="add-button" @click="$emit('add')">
+        <i class="icon icon-plus"></i>
+      </button>
+      <div v-else class="nav-item" :class="{ active: activeItem === item.key }">
+        <i :class="['icon', activeItem === item.key ? item.activeIconClass : item.iconClass]"></i>
+        <span class="nav-label">{{ item.label }}</span>
+      </div>
+    </template>
   </nav>
 </template>
 
@@ -35,6 +25,14 @@ defineProps({
 })
 
 defineEmits(['add'])
+
+const menuItems = [
+  { key: 'dashboard', label: '仪表盘', iconClass: 'icon-nav-dashboard', activeIconClass: 'icon-nav-dashboard-active' },
+  // { key: 'history', label: '历史', iconClass: 'icon-nav-history' },
+  { key: 'add', isAdd: true },
+  // { key: 'statistics', label: '统计', iconClass: 'icon-nav-statistics' },
+  { key: 'settings', label: '设置', iconClass: 'icon-nav-settings' },
+]
 </script>
 
 <style src="./index.less"></style>

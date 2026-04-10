@@ -1,22 +1,11 @@
 <template>
   <div class="ledger-selection-page">
-    <header class="header">
-      <h1 class="title">选取账本</h1>
-    </header>
-
     <main class="main-content">
       <SearchBar v-model="searchQuery" />
 
       <div class="ledger-grid">
-        <LedgerCard
-          v-for="ledger in filteredLedgers"
-          :key="ledger.id"
-          :name="ledger.name"
-          :balance="ledger.balance"
-          :icon="ledger.icon"
-          :selected="selectedLedgerId === ledger.id"
-          @click="selectLedger(ledger.id)"
-        />
+        <LedgerCard v-for="ledger in filteredLedgers" :key="ledger.id" :name="ledger.name" :balance="ledger.balance"
+          :icon="ledger.icon" :selected="selectedLedgerId === ledger.id" @click="selectLedger(ledger.id)" />
       </div>
 
       <div v-if="filteredLedgers.length === 0" class="empty-state">
@@ -24,7 +13,9 @@
       </div>
     </main>
 
-    <BottomNavigation :active-item="activeNav" @add="onAddClick" />
+    <BottomNavigation :active-item="activeNav" @add="showCreateModal = true" />
+
+    <CreateLedgerModal v-model:visible="showCreateModal" @create="handleCreateLedger" />
   </div>
 </template>
 
@@ -34,6 +25,7 @@ import { useLedgerStore } from '../../stores/ledger'
 import SearchBar from '../../components/SearchBar/index.vue'
 import LedgerCard from '../../components/LedgerCard/index.vue'
 import BottomNavigation from '../../components/BottomNavigation/index.vue'
+import CreateLedgerModal from '../../components/CreateLedgerModal/index.vue'
 import './index.less'
 
 const ledgerStore = useLedgerStore()
@@ -41,6 +33,7 @@ const ledgerStore = useLedgerStore()
 const searchQuery = ref('')
 const selectedLedgerId = ref(null)
 const activeNav = ref('dashboard')
+const showCreateModal = ref(false)
 
 const filteredLedgers = computed(() => {
   if (!searchQuery.value) {
@@ -58,7 +51,7 @@ function selectLedger(id) {
   console.log('Navigate to ledger:', id)
 }
 
-function onAddClick() {
-  console.log('Add new ledger/transaction')
+function handleCreateLedger(data) {
+  ledgerStore.addLedger(data)
 }
 </script>
